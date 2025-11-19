@@ -16,7 +16,7 @@ class HammingDistance implements DistanceInterface
      * @param  string $B
      * @return int    The hamming distance of the two strings A and B
      */
-    public function dist(&$A, &$B)
+    public function dist($A, $B)
     {
         $l1 = strlen($A);
         $l2 = strlen($B);
