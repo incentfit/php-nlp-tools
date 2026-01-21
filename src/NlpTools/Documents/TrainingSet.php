@@ -76,24 +76,24 @@ class TrainingSet implements \Iterator,\ArrayAccess,\Countable
     }
 
     // ====== Implementation of \Iterator interface =========
-    public function rewind()
+    public function rewind(): void
     {
         reset($this->documents);
         $this->currentDocument = current($this->documents);
     }
-    public function next()
+    public function next(): void
     {
         $this->currentDocument = next($this->documents);
     }
-    public function valid()
+    public function valid(): bool
     {
         return $this->currentDocument!=false;
     }
-    public function current()
+    public function current(): mixed
     {
         return $this->currentDocument;
     }
-    public function key()
+    public function key(): mixed
     {
         switch ($this->keytype) {
             case self::CLASS_AS_KEY:
@@ -108,26 +108,26 @@ class TrainingSet implements \Iterator,\ArrayAccess,\Countable
     // === Implementation of \Iterator interface finished ===
 
     // ====== Implementation of \ArrayAccess interface =========
-    public function offsetSet($key,$value)
+    public function offsetSet(mixed $key, mixed $value): void
     {
         throw new \Exception("Shouldn't add documents this way, add them through addDocument()");
     }
-    public function offsetUnset($key)
+    public function offsetUnset(mixed $key): void
     {
         throw new \Exception("Cannot unset any document");
     }
-    public function offsetGet($key)
+    public function offsetGet(mixed $key): mixed
     {
         return $this->documents[$key];
     }
-    public function offsetExists($key)
+    public function offsetExists(mixed $key): bool
     {
         return isset($this->documents[$key]);
     }
     // === Implementation of \ArrayAccess interface finished ===
 
     // implementation of \Countable interface
-    public function count()
+    public function count(): int
     {
         return count($this->documents);
     }
